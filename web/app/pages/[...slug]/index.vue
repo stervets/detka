@@ -1,5 +1,5 @@
 <template>
-<div v-if="page" :class="{'home-page':page.kind==='home'}">
+<div v-if="page" :class="{'home-page':page.kind==='home','gallery-page':page.kind==='gallery','contacts-page':page.kind==='contacts'}">
  <a class="skip-link" href="#main">К содержимому</a><SiteHeader/>
  <main id="main">
   <section :class="['hero',{'hero-home':page.kind==='home'}]">
@@ -7,7 +7,7 @@
     <div class="hero-copy">
      <div v-if="page.path!=='/'" class="breadcrumbs"><NuxtLink to="/">Главная</NuxtLink><span aria-hidden="true"> / </span><span>{{page.eyebrow}}</span></div>
      <span class="eyebrow"><span class="little-dot" aria-hidden="true"></span>{{page.eyebrow}}</span>
-     <h1><span v-for="(line,lineIndex) in page.heading.split('\n')" :key="lineIndex" :class="{'heading-accent':page.kind==='home' && lineIndex===1}">{{line}}<span v-if="lineIndex<page.heading.split('\n').length-1" class="heading-break"> </span></span></h1>
+     <h1><span v-for="(line,lineIndex) in page.heading.split('\n')" :key="lineIndex" :class="{'heading-accent':lineIndex===1}">{{line}}<span v-if="lineIndex<page.heading.split('\n').length-1" class="heading-break"> </span></span></h1>
      <p class="hero-lead">{{page.lead}}</p>
      <div class="hero-actions"><a href="#callback" class="button">Давайте познакомимся <span aria-hidden="true">↗</span></a><NuxtLink v-if="page.kind==='home'" to="/about" class="text-link">О нашем подходе <span aria-hidden="true">↗</span></NuxtLink></div>
     </div>
