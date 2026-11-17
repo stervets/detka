@@ -1,0 +1,3 @@
+<template> <section class="map-section shell"><div><span class="eyebrow">Циолковского, 32/3</span><h2>Мы на карте Липецка</h2><p>52.609204, 39.569692</p><a :href="mapUrl" target="_blank" rel="noopener" class="text-link">Открыть Яндекс Карты ↗</a><p class="small">Интерактивная карта загружается с сервиса Яндекса.</p></div><iframe title="Детка Плюс на Яндекс Картах" src="https://yandex.ru/map-widget/v1/?ll=39.569692%2C52.609204&amp;z=17&amp;pt=39.569692%2C52.609204%2Cpm2rdm" width="680" height="380" loading="lazy" referrerpolicy="no-referrer"></iframe></section></template>
+<script src="./script.ts" lang="ts"></script>
+<style src="./style.less" lang="less"></style>

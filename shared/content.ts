@@ -1,0 +1,8 @@
+export type Card = { title: string; text: string; href?: string; label?: string };
+export type Page = {
+ path: string; title: string; description: string; eyebrow: string; heading: string; lead: string;
+ kind?: 'home' | 'contacts' | 'gallery' | 'article' | 'privacy';
+ sections: { title: string; text?: string; cards?: Card[] }[];
+ demo?: boolean;
+};
+export type SiteContent = { pages: Page[]; settings: { name: string; address: string; phone: string | null; hours: string | null } };

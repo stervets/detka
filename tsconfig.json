@@ -1,0 +1,1 @@
+{"files": [], "references": [{"path": "./web/.nuxt/tsconfig.app.json"}, {"path": "./web/.nuxt/tsconfig.server.json"}, {"path": "./web/.nuxt/tsconfig.shared.json"}, {"path": "./web/.nuxt/tsconfig.node.json"}], "compilerOptions": {"experimentalDecorators": true}}

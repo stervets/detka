@@ -1,0 +1,44 @@
+{
+  "name": "detka-plus",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "tsx scripts/snapshot.ts && tsx scripts/seo.ts && nuxt dev web --host 127.0.0.1",
+    "dev:backend": "tsx watch --tsconfig backend/tsconfig.json backend/main.ts",
+    "db:migrate": "tsx backend/migrate.ts",
+    "db:seed": "tsx backend/seed.ts",
+    "generate": "tsx scripts/snapshot.ts && tsx scripts/seo.ts && nuxt generate web && tsx scripts/fallback.ts",
+    "publication:status": "tsx scripts/status.ts",
+    "build:backend": "tsc -p backend/tsconfig.json",
+    "start:backend": "node dist/backend/main.js",
+    "preview": "tsx scripts/serve.ts",
+    "typecheck": "nuxt typecheck web && tsc -p backend/tsconfig.json --noEmit",
+    "test": "tsx --tsconfig backend/tsconfig.json --test tests/*.test.ts",
+    "content:publish": "tsx scripts/publish.ts"
+  },
+  "dependencies": {
+    "nuxt": "4.6.4",
+    "vue": "^3.5.0",
+    "vue-router": "^5.5.1",
+    "@nestjs/common": "^11.1.0",
+    "@nestjs/core": "^11.1.0",
+    "@nestjs/platform-fastify": "^11.1.0",
+    "@fastify/static": "^8.3.0",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
+    "element-plus": "^2.11.0",
+    "fastify": "^5.6.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.0",
+    "vue-tsc": "^3.1.0",
+    "tsx": "^4.20.0",
+    "@types/node": "^24.0.0",
+    "less": "^4.4.0",
+    "tailwindcss": "^4.1.0",
+    "@tailwindcss/vite": "^4.1.0"
+  }
+}
