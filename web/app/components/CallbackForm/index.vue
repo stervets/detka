@@ -2,6 +2,7 @@
 <section id="callback" class="callback-section"><div class="shell callback-layout">
  <div class="callback-copy"><span class="eyebrow">Первый шаг — разговор</span><h2>Давайте<br><em>познакомимся</em></h2><p>Оставьте номер — сотрудник центра свяжется с вами, ответит на вопросы и обсудит знакомство.</p><p class="small">Это заявка на обратный звонок. Дата, формат и стоимость встречи согласуются лично.</p><img src="/images/botanical-640.webp" width="640" height="427" alt="" loading="lazy" class="callback-sprig"></div>
  <form @submit.prevent="submit" class="callback-form">
+  <img class="callback-girl" src="/images/logo-girl.webp" width="480" height="320" alt="" aria-hidden="true" loading="lazy">
   <div class="field-row"><label>Ваше имя<input v-model="name" name="name" autocomplete="given-name" minlength="2" maxlength="80" required placeholder="Как к вам обращаться"></label><label>Телефон<input v-model="phone" name="phone" type="tel" autocomplete="tel" minlength="10" maxlength="30" required placeholder="+7 (___) ___-__-__"></label></div>
   <label>Комментарий <span class="optional">· необязательно</span><textarea v-model="comment" name="comment" maxlength="1000" rows="3" placeholder="О чём вы хотели бы спросить?"></textarea></label>
   <p class="small">Не указывайте медицинские сведения и данные ребёнка.</p>
