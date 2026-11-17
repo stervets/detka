@@ -41,7 +41,9 @@
 .site-header nav a {
     font-size: 16px;
     font-weight: 500;
-    text-decoration: none;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 6px;
     white-space: nowrap;
     padding: 12px 0;
 }
@@ -49,16 +51,19 @@
     color: var(--accent);
 }
 .header-cta {
+    background: var(--brand);
+    color: #fff;
     font-size: 16px;
     text-decoration: none;
-    border: 1px solid var(--line);
+    border: 1px solid var(--brand);
     border-radius: 50px;
     padding: 14px 18px;
     white-space: nowrap;
 }
+.header-cta:hover { background: var(--accent); color: #fff; }
 .header-cta span {
     margin-left: 12px;
-    color: var(--accent);
+    color: inherit;
 }
 .menu-toggle {
     display: none;

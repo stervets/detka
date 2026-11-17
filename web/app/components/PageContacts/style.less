@@ -1,1 +1,14 @@
-.map-section{display:grid;grid-template-columns:1fr 1.5fr;gap:40px;padding-bottom:75px;align-items:center}.map-section iframe{width:100%;border:1px solid var(--line);border-radius:10px}.map-section h2{margin:20px 0}.map-section p{margin:15px 0}@media(max-width:700px){.map-section{grid-template-columns:1fr;padding-bottom:45px}}
+.map-section {
+ display:grid;
+ grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);
+ gap:48px;
+ padding-top:80px;
+ padding-bottom:80px;
+ align-items:center;
+}
+.map-section iframe { width:100%; border:1px solid var(--line); border-radius:24px; }
+.map-section h2 { margin:20px 0; }
+.map-section p { margin:15px 0; }
+@media(max-width:700px) {
+ .map-section { grid-template-columns:1fr; padding-top:48px; padding-bottom:48px; gap:30px; }
+}
