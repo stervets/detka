@@ -19,14 +19,17 @@
   </section>
   <div v-if="page.kind==='home'" class="values-strip"><div class="shell"><span>Внимание к особенностям</span><span>Партнёрство с семьёй</span><span>Бережное общение</span></div></div>
   <component :is="detailComponent" v-if="detailComponent"/>
-  <section v-for="(section,index) in page.sections" :key="section.title" :class="['content-section',{'tinted':index%2===1,'approach-section':page.kind==='home' && index===1,'team-section':page.kind==='home' && index===2,'space-section':page.kind==='home' && index===3}]">
+  <section v-for="(section,index) in page.sections" :key="section.title" :class="['content-section',{'tinted':index%2===1,'section-with-image':section.image,'approach-section':page.kind==='home' && index===1,'team-section':page.kind==='home' && index===2,'space-section':page.kind==='home' && index===3}]">
    <div class="shell">
+    <figure v-if="section.image" class="section-photo"><img :src="section.image" :alt="section.imageAlt || ''" width="1440" height="960" loading="lazy"></figure>
     <figure v-if="page.kind==='home' && index===3" class="space-photo"><img src="/images/room-960.webp" srcset="/images/room-640.webp 640w, /images/room-960.webp 960w, /images/room-1440.webp 1440w" sizes="(max-width:700px) calc(100vw - 48px), 43vw" width="960" height="640" alt="Светлая комната с деревянными игрушками" loading="lazy"></figure>
     <div class="section-intro"><div><h2>{{section.title}}</h2><p v-if="section.text" class="section-description">{{section.text}}</p></div></div>
     <div v-if="section.cards" :class="['cards',{single:section.cards.length===1}]">
      <article v-for="card in section.cards" :key="card.title" :class="['card',{'card-with-image':card.image}]">
-      <img v-if="card.image" :src="card.image" :alt="card.imageAlt || card.title" width="560" height="700" loading="lazy">
+      <NuxtLink v-if="card.image && card.href" :to="card.href" class="card-image-link"><img :src="card.image" :alt="card.imageAlt || card.title" width="960" height="640" loading="lazy"></NuxtLink>
+      <img v-else-if="card.image" :src="card.image" :alt="card.imageAlt || card.title" width="560" height="700" loading="lazy">
       <span v-if="card.label" class="card-label">{{card.label}}</span><h3><NuxtLink v-if="card.href" :to="card.href">{{card.title}}</NuxtLink><template v-else>{{card.title}}</template></h3><p>{{card.text}}</p>
+      <div v-if="card.paragraphs" class="card-paragraphs"><div v-for="paragraph in card.paragraphs" :key="paragraph.title"><h4>{{paragraph.title}}</h4><p>{{paragraph.text}}</p></div></div>
       <NuxtLink v-if="card.href" :to="card.href" class="card-more" :aria-label="'Подробнее: '+card.title">Подробнее <span aria-hidden="true">→</span></NuxtLink>
      </article>
     </div>

@@ -21,7 +21,7 @@ async function main(){
   }
   browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH,args:['--disable-gpu']});
   mkdirSync('test-results',{recursive:true});
-  const paths=['/','/about','/services','/services/family-meeting','/services/parent-support','/specialists','/specialists/demo','/gallery','/parents','/parents/first-visit','/parents/questions','/contacts','/privacy'];
+  const paths=['/','/about','/services','/services/family-meeting','/services/parent-support','/specialists','/specialists/demo','/gallery','/parents','/contacts','/privacy'];
   for(const viewport of [{width:1440,height:1000},{width:390,height:844}]){
    const page=await browser.newPage({viewport});
    page.on('pageerror',error=>errors.push(error.message));
@@ -46,7 +46,15 @@ async function main(){
    }
    await page.goto('http://localhost:3000/');
    await page.getByRole('textbox',{name:'Ваше имя'}).fill('Тестовая Заявка');
-   await page.getByRole('textbox',{name:'Телефон',exact:true}).fill('+7 (000) 000-00-00');
+   const phone=page.getByRole('textbox',{name:'Телефон',exact:true});
+   await phone.focus();
+   await phone.pressSequentially('0000000000');
+   assert.equal(await phone.inputValue(),'+7 (000) 000-00-00');
+   await phone.press('Backspace');
+   assert.equal(await phone.evaluate(input=>input.checkValidity()),false);
+   await phone.press('0');
+   await phone.fill('80000000000');
+   assert.equal(await phone.inputValue(),'+7 (000) 000-00-00');
    await page.getByRole('checkbox').check();
    await page.getByRole('button',{name:'Заказать обратный звонок'}).click();
    await page.getByRole('status').filter({hasText:'Заявка сохранена'}).waitFor();
@@ -60,7 +68,7 @@ async function main(){
   assert.equal(response.status(),404);
   assert.ok((await page.locator('h1').textContent()).includes('Такой страницы нет'));
   assert.deepEqual(errors,[]);
-  console.log('OK: 13 маршрутов × desktop/mobile, меню, 2 заявки, HTML без JS, HTTP 404, без ошибок консоли.');
+  console.log('OK: 11 маршрутов × desktop/mobile, меню, 2 заявки, HTML без JS, HTTP 404, без ошибок консоли.');
  }finally{
   if(browser)await browser.close();
   for(const child of children){try{process.kill(-child.pid,'SIGTERM');}catch{}}
