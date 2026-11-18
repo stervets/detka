@@ -11,7 +11,7 @@ async function main(){
  const errors=[];
  try {
   for(const args of [['node_modules/tsx/dist/cli.mjs','--tsconfig','backend/tsconfig.json','backend/main.ts'],['node_modules/tsx/dist/cli.mjs','scripts/serve.ts']]){
-   const child=spawn(process.execPath,args,{detached:true,stdio:'ignore',env:{...process.env,DB_PATH:join(directory,'test.sqlite'),STATIC_ROOT:'web/.output/public'}});
+   const child=spawn(process.execPath,args,{detached:true,stdio:'ignore',env:{...process.env,DB_PATH:join(directory,'test.sqlite'),STATIC_ROOT:'frontend/.output/public'}});
    children.push(child);
   }
   for(let attempt=0;attempt<80;attempt++){

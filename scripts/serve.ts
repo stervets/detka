@@ -8,9 +8,9 @@ async function main(){
   const response=await fetch('http://127.0.0.1:3001/api/callbacks',{method:'POST',headers:{'Content-Type':'application/json',...(request.headers.origin?{Origin:request.headers.origin}:{})},body:JSON.stringify(request.body)});
   return reply.code(response.status).send(await response.json());
  });
- await app.register(fastifyStatic,{root:resolve('web/.output/public'),serve:false});
+ await app.register(fastifyStatic,{root:resolve('frontend/.output/public'),serve:false});
  app.get('/*',async(request,reply)=>{
-  const root=process.env.STATIC_ROOT?resolve(process.env.STATIC_ROOT):existsSync('storage/current')?realpathSync('storage/current'):resolve('web/.output/public');
+  const root=process.env.STATIC_ROOT?resolve(process.env.STATIC_ROOT):existsSync('storage/current')?realpathSync('storage/current'):resolve('frontend/.output/public');
   let path:string;
   try{path=decodeURIComponent(request.url.split('?')[0]!);}catch{return reply.code(400).send('Некорректный URL');}
   let candidate=resolve(root,'.'+path);

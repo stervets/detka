@@ -6,16 +6,16 @@
     "node": ">=24.0.0"
   },
   "scripts": {
-    "dev": "tsx scripts/snapshot.ts && tsx scripts/seo.ts && nuxt dev web --host 127.0.0.1",
+    "dev": "tsx scripts/snapshot.ts && tsx scripts/seo.ts && nuxt dev frontend --host 127.0.0.1",
     "dev:backend": "tsx watch --tsconfig backend/tsconfig.json backend/main.ts",
     "db:migrate": "tsx backend/migrate.ts",
     "db:seed": "tsx backend/seed.ts",
-    "generate": "tsx scripts/snapshot.ts && tsx scripts/seo.ts && nuxt generate web && tsx scripts/fallback.ts",
+    "generate": "tsx scripts/snapshot.ts && tsx scripts/seo.ts && nuxt generate frontend && tsx scripts/fallback.ts",
     "publication:status": "tsx scripts/status.ts",
     "build:backend": "tsc -p backend/tsconfig.json",
     "start:backend": "node dist/backend/main.js",
     "preview": "tsx scripts/serve.ts",
-    "typecheck": "nuxt typecheck web && tsc -p backend/tsconfig.json --noEmit",
+    "typecheck": "nuxt typecheck frontend && tsc -p backend/tsconfig.json --noEmit",
     "test": "tsx --tsconfig backend/tsconfig.json --test tests/*.test.ts",
     "content:publish": "tsx scripts/publish.ts"
   },

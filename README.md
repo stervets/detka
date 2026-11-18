@@ -28,10 +28,10 @@ yarn build:backend
 yarn test
 ```
 
-Готовый статический сайт: `web/.output/public`. Backend: `yarn start:backend`.
+Готовый статический сайт: `frontend/.output/public`. Backend: `yarn start:backend`.
 Для проверки готового сайта при работающем backend: `yarn preview` (порт 3000).
 Сервер возвращает настоящий HTTP 404 с готовым HTML, без SPA fallback.
-Для просмотра новой сборки без переключения сохранённого релиза: `STATIC_ROOT=web/.output/public yarn preview`.
+Для просмотра новой сборки без переключения сохранённого релиза: `STATIC_ROOT=frontend/.output/public yarn preview`.
 Запускаемые вручную серверы останавливаются Ctrl+C.
 
 Настройки передаются через окружение; варианты перечислены в `.env.example`.
@@ -67,7 +67,7 @@ yarn test
 
 ## Устройство и публикация
 
-- `web/`: Nuxt 4 SSG, Vue Options API, Less и Tailwind 4 через Vite.
+- `frontend/`: Nuxt 4 SSG, Vue Options API, Less и Tailwind 4 через Vite.
   Компоненты разделены на index.vue, script.ts, style.less.
 - `backend/`: NestJS 11 + Fastify, SQLite через встроенный node:sqlite, SQL-миграция.
 - `shared/content.ts`: форма публичного снимка; `shared/demo.ts`: воспроизводимый seed.
@@ -117,7 +117,7 @@ PLAYWRIGHT_MODULE=/путь/к/playwright CHROMIUM_PATH=/путь/к/chrome node
 использует временную SQLite, проходит 13 маршрутов на 1440 и 390 px,
 проверяет меню, форму, загрузку изображений, отсутствие горизонтальной прокрутки и ошибок JS,
 HTML без JavaScript и HTTP 404. Скриншоты: test-results/home-1440.png и home-390.png.
-Браузер и серверы закрываются в finally. Проверяется новая сборка `web/.output/public`,
+Браузер и серверы закрываются в finally. Проверяется новая сборка `frontend/.output/public`,
 даже если существует `storage/current` со старым релизом. Внешняя карта Яндекса зависит от сети.
 
 ## До рабочего запуска и этап 2

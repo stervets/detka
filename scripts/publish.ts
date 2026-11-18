@@ -15,10 +15,10 @@ try {
  const snapshot=readContent();
  const hash=createHash('sha256').update(JSON.stringify(snapshot)).digest('hex');
  publicationId=Number(database.prepare("INSERT INTO publications(status,content_hash) VALUES('building',?)").run(hash).lastInsertRowid);
- writeFileSync('web/content.json',JSON.stringify(snapshot,null,2));
+ writeFileSync('frontend/content.json',JSON.stringify(snapshot,null,2));
  await import('./seo');
  const release=resolve('storage/releases',String(publicationId));
- const result=spawnSync('yarn',['nuxt','generate','web'],{stdio:'inherit',env:{...process.env,NITRO_OUTPUT_DIR:release}});
+ const result=spawnSync('yarn',['nuxt','generate','frontend'],{stdio:'inherit',env:{...process.env,NITRO_OUTPUT_DIR:release}});
  if(result.status!==0) throw new Error('Ошибка генерации; предыдущая публикация сохранена');
  const {writeFallback}=await import('./fallback');
  writeFallback(resolve(release,'public'));
